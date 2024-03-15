@@ -162,28 +162,14 @@ def non_standard_residues(ID):
     #Calling the "get_pdb" function to use its outputfile to get its residues
     output1=get_pdb(ID)
     #Creating an empty list to store all the protein residues from the pdb file
-    protein_residues=""
+    non_standard_residues=set()
     #Isolating lines from the pdb file which is the output of the "get_pdb()" function
     for line in output1:
-    #Specifying the lines to look at when searching for residues
-        if (line.startswith("HETATM")) and (line[13:15]=="CA"):
-            protein_residues+=(line[17:21])
-    #Creating a set of standard_residues      
-    standard_residues={"PRO","ALA","ASX","CYS","ASP","GLU","PHE","GLY",
-                       "HIS","ILE","LYS","LEU","MET","ASN","GLN","ARG",
-                        "SER","THR","SEC","VAL","TRP","TYR","GLX"}
-
-    #Creating an empty set to store non_standard residues, a set is used to avoid repetion of the same residue enusing only one entry is recorded
-    non_standard_residues=set()
-    #Iterating through the protein residues isolated from the pdb file
-    for i in range(len(protein_residues)):
-        n=i+1
-    #Testing for membership of the protein residues on the standard residues and printing out those that are not members of both
-        if protein_residues[(4*n-4):(4*n-1)] not in standard_residues:
-    #Adding non_standard residues to the empty set
-            non_standard_residues.add(protein_residues[(4*n-4):(4*n-1)])
-    #Printing non_standard residues to the output
-    print(non_standard_residues, end="")
+    #Setting a condition to focus only on the lines starting with "HETATM" since non-standard residues are contained in those lines
+        if (line.startswith("HETATM")):
+            non_standard_residues.add((line[17:21]))
+    print(non_standard_residues)
+    
     
 #Plot the temperature factor of the protein, given a chain ID, the plot dimensions and an output file name.
 from matplotlib import pyplot as plt
