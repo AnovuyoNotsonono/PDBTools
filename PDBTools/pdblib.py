@@ -14,23 +14,25 @@ def get_pdb(ID='PDB_options'):
            print("The file is being downloaded")
   #Downloading a PDB file if it does not exist locally using the "requests" module 
            response=requests.get("https://files.rcsb.org/download/"+ID+".pdb")
-           return response.text
+           pdb_file=response.text.split("\n")
+           return pdb_file
       
-  #Allowing the user to know if the file exists locally, this line also executes ONLY if the argument "ID" 
-    # is given in the function call.
+  #Allowing the user to open and read the file on condition that the file already exists locally,
+  #this line also executes ONLY if the argument "ID" is given in the function call
     elif (os.path.exists(ID+".pdb")==True) and (ID!="PDB_options"):
         print("file exists locally")
-    
-  #Error handling: handling a FileNotFoundError.
+        
+   #On condition that the file exists locally, it is opened for reading using the "with" keyword.
+  #Error handling: this is to avoid the "FileNotFound error" that occurs when trying to read a file without 
+                   #providing an ID for that file, this error handling enables the user to choose what they want
+                   #to do from the pdb_options given
     try:
-        #Reading a PDB file as an fobject
         with open(ID+".pdb", "r") as fobject:
-                lines=fobject.readlines()
-        return lines        
+                pdf_file=fobject.readlines()
+                return pdf_file
     except FileNotFoundError:
-        print("Please choose from these PDB_options on the 'pdb_details' function")
-        return lines
-
+        print("Please choose from these PDB_options by calling 'pdb_details' function")
+        
 
 def pdb_details(ID, key):
     """pdb_details takes as keyword arguments a pdb ID and a key/option number, it 
@@ -39,7 +41,9 @@ def pdb_details(ID, key):
     output1=get_pdb(ID)
     
     #Creating a dictionary containing details of the PDB file with option numbers as keys and details as values
-    PDB_options={"1":output1[0], "2":output1[1:4], "3":output1[8:13], "4":output1[13], "5":output1[15], "6":output1[29], "7":output1[20:28]}
+    PDB_options={"1":output1[0], "2":output1[1:4], "3":output1[8:13], 
+                 "4":output1[13], "5":output1[15], "6":output1[29], 
+                 "7":output1[20:28]}
     return PDB_options[key]
     
 
