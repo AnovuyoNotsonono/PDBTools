@@ -14,11 +14,13 @@ def get_pdb(ID='PDB_options'):
            print("The file is being downloaded")
   #Downloading a PDB file if it does not exist locally using the "requests" module 
            response=requests.get("https://files.rcsb.org/download/"+ID+".pdb")
+           return response.text
       
   #Allowing the user to know if the file exists locally, this line also executes ONLY if the argument "ID" 
     # is given in the function call.
     elif (os.path.exists(ID+".pdb")==True) and (ID!="PDB_options"):
         print("file exists locally")
+    
   #Error handling: handling a FileNotFoundError.
     try:
         #Reading a PDB file as an fobject
@@ -27,6 +29,7 @@ def get_pdb(ID='PDB_options'):
         return lines        
     except FileNotFoundError:
         print("Please choose from these PDB_options on the 'pdb_details' function")
+        return lines
 
 
 def pdb_details(ID, key):
