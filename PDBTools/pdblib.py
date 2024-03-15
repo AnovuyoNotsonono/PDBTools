@@ -175,13 +175,12 @@ def non_standard_residues(ID):
 from matplotlib import pyplot as plt
 def temperature_factor_plot(ID, chain_id):
     output1=get_pdb(ID)
+    #Creating an empty list to store all the temperature factor values
     Temperature_factor=[]
-    index=[]
     for line in output1:
         if (line.startswith("ATOM")) and (line[21]==chain_id):
             Temperature_factor.append(float(line[61:65]))
-            index.append(line[10])
             plt.title("Temperature_factor plot")
-    temp_plot=plt.plot(Temperature_factor)
+            plt.plot(Temperature_factor)
 
  
