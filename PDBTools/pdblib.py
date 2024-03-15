@@ -40,11 +40,14 @@ def pdb_details(ID, key):
     # Calling and assigning get_pdb() function into a variable to use it on the "pdb_details" function
     output1=get_pdb(ID)
     
-    #Creating a dictionary containing details of the PDB file with option numbers as keys and details as values
-    PDB_options={"1":output1[0], "2":output1[1:4], "3":output1[8:13], 
-                 "4":output1[13], "5":output1[15], "6":output1[29], 
-                 "7":output1[20:28]}
-    return PDB_options[key]
+    for line in output1:
+       #Creating a dictionary containing details of the PDB file with option numbers as keys and details as values 
+        PDB_options={"1":"HEADER", "2":"TITLE", "3":"SOURCE", "4":"KEYWDS", 
+                     "5":"AUTHOR", "6":"RESOLUTION", "7":"JRNL"}
+        #Allowing the user to isolate the lines they want from the optiones given.
+        if line.startswith(PDB_options[key]):
+            print(line)
+    
     
 
 def protein_residues(ID,chain_id):
