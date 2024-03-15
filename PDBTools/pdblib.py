@@ -2,7 +2,8 @@
 import os
 import requests
 def get_pdb(ID='PDB_options'):
-    """get_pdb downloads,reads a PDB file and queries its data"""
+    """get_pdb takes pdb_ID as a default argument, downloads and reads a PDB file and queries its data
+       it also gives options to the user on what to do when no argument is given"""
   #Giving the user options when no input is inserted  
     if ID=='PDB_options':
         print("[1.HEADER, 2.TITLE, 3.SOURCE, 4.KEYWDS, 5.AUTHOR, 6.RESOLUTION, 7.JRNL TITL]")
@@ -73,7 +74,7 @@ def protein_residues(ID,chain_id):
     #Iterating through the "standard_amino_acids" dictionary to access those keys existing on the "three-letter_residues"
     #found on the pdb file protein residues
     for k,v in standard_amino_acids.items():
-        #Isolating those protein residues existing in both standard_amino_acids and the pdb file
+        #Isolating those protein residues existing in both standard_amino_acids and the pdb file, printing them on a single line
         if k in three_letter_residues:
             print(v, end=" ")
 
@@ -111,7 +112,7 @@ def print_or_writelines_to_a_file(ID,chain_id,record_type,option):
     
     #Calling the "get_pdb() function to use its pdb output file"
     output1=get_pdb(ID)
-    #Creating an empty string to store the "results" relevant to the conditions below
+    #Creating an empty string to store the "results" relevant to the conditions set by the user
     results=""
     #Isolating lines according to the criteria chosen by the user
     for line in output1:
@@ -146,7 +147,7 @@ def change_chain_id(ID,record_type,chain_id, new_chain_id):
         #Selecting the relevant lines according to the criteria chosen by the user
         if (line.startswith(record_type)) and (line[21]==chain_id):
         #Replacing the chain_id chosen by the user with a new chain_id also chosen by the user
-            altered_chain_id +=chain_id.replace(chain_id, new_chain_id)
+            altered_chain_id +=line[21].replace(chain_id, new_chain_id)
             new_file+=line[:21]+altered_chain_id+line[22:]
             
         #Saving the lines with the altered chain ids to a new fasta file
