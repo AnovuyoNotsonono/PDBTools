@@ -160,7 +160,7 @@ def non_standard_residues(ID):
     """non_standard_residues takes as positional argument a pdb ID and returns non-standard residues
        from the pdb file if they exist"""
     #Calling the "get_pdb" function to use its outputfile to get its residues
-    output1=get_pdb(ID).split(\n)
+    output1=get_pdb(ID).split("\n")
     #Creating an empty list to store all the protein residues from the pdb file
     non_standard_residues=set()
     #Isolating lines from the pdb file which is the output of the "get_pdb()" function
