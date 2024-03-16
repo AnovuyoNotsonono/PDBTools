@@ -39,7 +39,7 @@ def pdb_details(ID, key):
     """pdb_details takes as keyword arguments a pdb ID and a key/option number, it 
        return the details corresponding to the selected key/option """
     # Calling and assigning get_pdb() function into a variable to use it on the "pdb_details" function
-    output1=get_pdb(ID)
+    output1=get_pdb(ID).split("\n")
     
     for line in output1:
        #Creating a dictionary containing details of the PDB file with option numbers as keys and details as values 
@@ -55,7 +55,7 @@ def protein_residues(ID,chain_id):
     """Protein_residues takes a PDB ID and a chain ID as positional inputs to give
        one-letter protein residues found on the pdb_file"""
     #Calling the "get_pdb" function to use its output pdb file to get protein residues
-    output1=get_pdb(ID)
+    output1=get_pdb(ID).split("\n")
     
     #Creating an empty string for three-letter protein residues found on the pdb file
     three_letter_residues=""
