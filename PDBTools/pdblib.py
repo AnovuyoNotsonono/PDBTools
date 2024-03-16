@@ -111,7 +111,7 @@ def print_or_writelines_to_a_file(ID,chain_id,record_type,option):
        or non_protein lines either stored in a file or printed out for reading"""
     
     #Calling the "get_pdb() function to use its pdb output file"
-    output1=get_pdb(ID)
+    output1=get_pdb(ID).split("\n")
     #Creating an empty string to store the "results" relevant to the conditions set by the user
     results=""
     #Isolating lines according to the criteria chosen by the user
@@ -134,7 +134,7 @@ def change_chain_id(ID,record_type,chain_id, new_chain_id):
        returns a file written to it the PDB contents with the altered chain ids"""
     
     #Calling the get_pdb function to use its output file and change its chain id
-    output1=get_pdb(ID)
+    output1=get_pdb(ID).split("\n")
     
     #Creating an empty string to store the file with altered chain id
     new_file=""
@@ -160,7 +160,7 @@ def non_standard_residues(ID):
     """non_standard_residues takes as positional argument a pdb ID and returns non-standard residues
        from the pdb file if they exist"""
     #Calling the "get_pdb" function to use its outputfile to get its residues
-    output1=get_pdb(ID)
+    output1=get_pdb(ID).split(\n)
     #Creating an empty list to store all the protein residues from the pdb file
     non_standard_residues=set()
     #Isolating lines from the pdb file which is the output of the "get_pdb()" function
