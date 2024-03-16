@@ -84,7 +84,7 @@ def pdb_chains(ID, output_filename, chain=None):
        this function saves each chain from a pdb_file in a single fasta file provided a chain is not given """
     
     #Calling the "get_pdb" function and giving it a variable "output1" to use its output pdb_file
-    output1=get_pdb(ID)
+    output1=get_pdb(ID).split("\n")
     
     #Creating an empty string to isolate chains from the pdb file
     chains=""
