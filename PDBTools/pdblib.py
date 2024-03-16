@@ -14,11 +14,12 @@ def get_pdb(ID='PDB_options'):
       #if the argument "ID" is given during a fuction call.
     
         if (os.path.exists(ID+".pdb")==False) and (ID!="PDB_options"):
-               print("The file is being downloaded")
+            print("The file is being downloaded")
       #Downloading a PDB file if it does not exist locally using the "requests" module 
-               response=requests.get("https://files.rcsb.org/download/"+ID+".pdb")
-               pdb_file=response.text
-               return pdb_file
+            response=requests.get("https://files.rcsb.org/download/"+ID+".pdb")
+            print(response.text)
+            pdb_file=response.text.split("\n")
+            return pdb_file
       
       #Allowing the user to open and read the file on condition that the file already exists locally,
       #this line also executes ONLY if the argument "ID" is given in the function call
@@ -31,8 +32,9 @@ def get_pdb(ID='PDB_options'):
                    #to do from the pdb_options given
         try:
             with open(ID+".pdb", "r") as fobject:
-                    pdf_file=fobject.readlines()
-                    return pdf_file
+                pdf_file=fobject.readlines
+                print(pdf_file)
+                return pdf_file
         except FileNotFoundError:
             print("Please choose from these PDB_options by calling 'pdb_details' function")
     except TypeError:
@@ -42,13 +44,12 @@ def pdb_details(ID, key):
     """pdb_details takes as keyword arguments a pdb ID and a key/option number, it 
        return the details corresponding to the selected key/option """
     # Calling and assigning get_pdb() function into a variable to use it on the "pdb_details" function
-    output1=get_pdb(ID).split("\n")
+    output1=get_pdb(ID)
     
     try:
-            for line in output1:
-                
-       #Creating a dictionary containing details of the PDB file with option numbers as keys and details as values 
-                PDB_options={"1":"HEADER", "2":"TITLE", "3":"SOURCE", "4":"KEYWDS", 
+        for line in output1:
+            #Creating a dictionary containing details of the PDB file with option numbers as keys and details as values 
+            PDB_options={"1":"HEADER", "2":"TITLE", "3":"SOURCE", "4":"KEYWDS", 
                      "5":"AUTHOR", "6":"RESOLUTION", "7":"JRNL"}
         #Allowing the user to isolate the lines they want from the optiones given.
             if line.startswith(PDB_options[key]):
@@ -64,7 +65,7 @@ def protein_residues(ID,chain_id):
     
     try:
         #Calling the "get_pdb" function to use its output pdb file to get protein residues
-        output1=get_pdb(ID).split("\n")
+        output1=get_pdb(ID)
     
     #Creating an empty string for three-letter protein residues found on the pdb file
     three_letter_residues=""
@@ -95,7 +96,7 @@ def pdb_chains(ID, output_filename, chain=None):
     
     try:
         #Calling the "get_pdb" function and giving it a variable "output1" to use its output pdb_file
-        output1=get_pdb(ID).split("\n")
+        output1=get_pdb(ID)
     
         #Creating an empty string to isolate chains from the pdb file
         chains=""
@@ -150,7 +151,7 @@ def change_chain_id(ID,record_type,chain_id, new_chain_id):
     
     try:
         #Calling the get_pdb function to use its output file and change its chain id
-        output1=get_pdb(ID).split("\n")
+        output1=get_pdb(ID)
     
         #Creating an empty string to store the file with altered chain id
         new_file=""
@@ -179,7 +180,7 @@ def non_standard_residues(ID):
        from the pdb file if they exist"""
     try:
         #Calling the "get_pdb" function to use its outputfile to get its residues
-        output1=get_pdb(ID).split("\n")
+        output1=get_pdb(ID)
         #Creating an empty list to store all the protein residues from the pdb file
         non_standard_residues=set()
         #Isolating lines from the pdb file which is the output of the "get_pdb()" function
