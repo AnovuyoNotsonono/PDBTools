@@ -43,10 +43,10 @@ def get_pdb(ID='PDB_options'):
 def pdb_details(ID, key):
     """pdb_details takes as keyword arguments a pdb ID and a key/option number, it 
        return the details corresponding to the selected key/option """
-    # Calling and assigning get_pdb() function into a variable to use it on the "pdb_details" function
-    output1=get_pdb(ID)
-    
+     #Error handling: Handling the TypeError giving the user a hint to enter a correct type of input.
     try:
+        # Calling and assigning get_pdb() function into a variable to use it on the "pdb_details" function
+        output1=get_pdb(ID)
         for line in output1:
             #Creating a dictionary containing details of the PDB file with option numbers as keys and details as values 
             PDB_options={"1":"HEADER", "2":"TITLE", "3":"SOURCE", "4":"KEYWDS", 
@@ -62,7 +62,7 @@ def pdb_details(ID, key):
 def protein_residues(ID,chain_id):
     """Protein_residues takes a PDB ID and a chain ID as positional inputs to give
        one-letter protein residues found on the pdb_file"""
-    
+     #Error handling: Handling the TypeError giving the user a hint to enter a correct type of input.
     try:
         #Calling the "get_pdb" function to use its output pdb file to get protein residues
         output1=get_pdb(ID)
@@ -93,7 +93,7 @@ def protein_residues(ID,chain_id):
 def pdb_chains(ID, output_filename, chain=None):
     """pdb_chains takes pdb_ID, ouput filename as positional arguments and chain_id of none as a default argument,
        this function saves each chain from a pdb_file in a single fasta file provided a chain is not given """
-    
+     #Error handling: Handling the TypeError giving the user a hint to enter a correct type of input.
     try:
         #Calling the "get_pdb" function and giving it a variable "output1" to use its output pdb_file
         output1=get_pdb(ID)
@@ -122,7 +122,7 @@ def print_or_writelines_to_a_file(ID,chain_id,record_type,option):
     """print_or_writelines_to_a_file takes PDB ID, chain ID, record_type(to specify wheter HETATM/ATOM)
        and an option for the user to either print the results or write them to a file, it returns protein
        or non_protein lines either stored in a file or printed out for reading"""
-    
+     #Error handling: Handling the TypeError giving the user a hint to enter a correct type of input.
    try:
        #Calling the "get_pdb() function to use its pdb output file"
         output1=get_pdb(ID)
@@ -148,7 +148,7 @@ def change_chain_id(ID,record_type,chain_id, new_chain_id):
     """change_chain_id takes as positional inputs PDB ID,record_type(ATOM/HETATM), chain_id to be changed
        and a new chain_id, this function alters chain id as chosen by the user and
        returns a file written to it the PDB contents with the altered chain ids"""
-    
+     #Error handling: Handling the TypeError giving the user a hint to enter a correct type of input.
     try:
         #Calling the get_pdb function to use its output file and change its chain id
         output1=get_pdb(ID)
@@ -178,6 +178,7 @@ def change_chain_id(ID,record_type,chain_id, new_chain_id):
 def non_standard_residues(ID):
     """non_standard_residues takes as positional argument a pdb ID and returns non-standard residues
        from the pdb file if they exist"""
+     #Error handling: Handling the TypeError giving the user a hint to enter a correct type of input.
     try:
         #Calling the "get_pdb" function to use its outputfile to get its residues
         output1=get_pdb(ID)
@@ -196,6 +197,7 @@ def non_standard_residues(ID):
 #Plot the temperature factor of the protein, given a chain ID, the plot dimensions and an output file name.
 from matplotlib import pyplot as plt
 def temperature_factor_plot(ID, chain_id):
+     #Error handling: Handling the TypeError giving the user a hint to enter a correct type of input.
     try:
         output1=get_pdb(ID)
         #Creating an empty list to store all the temperature factor values
