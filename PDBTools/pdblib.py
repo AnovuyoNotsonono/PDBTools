@@ -15,7 +15,7 @@ def get_pdb(ID='PDB_options'):
            print("The file is being downloaded")
   #Downloading a PDB file if it does not exist locally using the "requests" module 
            response=requests.get("https://files.rcsb.org/download/"+ID+".pdb")
-           pdb_file=response.text.split("\n")
+           pdb_file=response.text
            return pdb_file
       
   #Allowing the user to open and read the file on condition that the file already exists locally,
