@@ -8,7 +8,8 @@ def get_pdb(ID='PDB_options'):
     try:
         #Giving the user options when no input is inserted  
         if ID=='PDB_options':
-            print("[1.HEADER, 2.TITLE, 3.SOURCE, 4.KEYWDS, 5.AUTHOR, 6.RESOLUTION, 7.JRNL TITL]")
+            print("[1.get_pdb(), 2.pdb_details(), 3.protein_residues(), 4.pdb_chains(), 5.print_or_writelines_to_a_file,
+                  6.change_chain_id(),7.non_standard_residues() 8.temperature_factor_plot()]")
   
       #Checking whether a file exists before downloading, this line ONLY executes
       #if the argument "ID" is given during a fuction call.
@@ -17,6 +18,7 @@ def get_pdb(ID='PDB_options'):
             print("The file is being downloaded")
       #Downloading a PDB file if it does not exist locally using the "requests" module 
             response=requests.get("https://files.rcsb.org/download/"+ID+".pdb")
+            #Printing the content of the pdb_file to the std output for the user to read
             print(response.text)
             pdb_file=response.text.split("\n")
             return pdb_file
@@ -32,11 +34,12 @@ def get_pdb(ID='PDB_options'):
                    #to do from the pdb_options given
         try:
             with open(ID+".pdb", "r") as fobject:
-                pdf_file=fobject.readlines
+                pdf_file=fobject.readlines()
+                #Printing the content of the pdb_file to the std output for the user to read
                 print(pdf_file)
                 return pdf_file
         except FileNotFoundError:
-            print("Please choose from these PDB_options by calling 'pdb_details' function")
+            print("Please choose what you want to do by calling one of the listed functionalities")
     except TypeError:
         print("Please change the type of your input to a correct one")
 
@@ -50,7 +53,7 @@ def pdb_details(ID, key):
         for line in output1:
             #Creating a dictionary containing details of the PDB file with option numbers as keys and details as values 
             PDB_options={"1":"HEADER", "2":"TITLE", "3":"SOURCE", "4":"KEYWDS", 
-                     "5":"AUTHOR", "6":"RESOLUTION", "7":"JRNL"}
+                         "5":"AUTHOR", "6":"RESOLUTION", "7":"JRNL"}
         #Allowing the user to isolate the lines they want from the optiones given.
             if line.startswith(PDB_options[key]):
                 print(line)
