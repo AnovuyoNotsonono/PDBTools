@@ -1,5 +1,6 @@
 import os
 import requests
+
 def get_pdb(ID='PDB_options'):
     """get_pdb takes pdb_ID as a default argument, downloads and reads a PDB file and queries its data
        it also gives options to the user on what to do when no argument is given"""
@@ -209,7 +210,8 @@ def non_standard_residues(ID):
     
 #Plot the temperature factor of the protein, given a chain ID, the plot dimensions and an output file name.
 from matplotlib import pyplot as plt
-def temperature_factor_plot(ID, chain_id):
+os.environ["XDG_SESSION_TYPE"]="xcb"
+def temperature_factor_plot(ID, chain_id,L,B):
     """temperature_factor plot takes as positional inputs a pdb id and a chain id and returns a plot of the temperature factor, the plot is done using matplotlib"""
      #Error handling: Handling the TypeError giving the user a hint to enter a correct type of input.
     try:
@@ -219,8 +221,12 @@ def temperature_factor_plot(ID, chain_id):
         for line in output1:
             if (line.startswith("ATOM")) and (line[21]==chain_id):
                 Temperature_factor.append(float(line[61:65]))
-                plt.title("Temperature_factor plot")
+                #Setting a plot figure to control plot dimensions "length" and "breadth"
+                plt.figure(figsize=(int(L),int(B)))
+                #Plotting the graph
+                plot=plt.title("Temperature_factor plot")
                 plt.plot(Temperature_factor)
+                plt.show()
+
     except TypeError:
         print("Please change the type of your input to a correct one")
-
