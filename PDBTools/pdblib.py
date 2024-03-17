@@ -197,6 +197,7 @@ def non_standard_residues(ID):
 #Plot the temperature factor of the protein, given a chain ID, the plot dimensions and an output file name.
 from matplotlib import pyplot as plt
 def temperature_factor_plot(ID, chain_id):
+    """temperature_factor plot takes as positional inputs a pdb id and a chain id and returns a plot of the temperature factor, the plot is done using matplotlib""""
      #Error handling: Handling the TypeError giving the user a hint to enter a correct type of input.
     try:
         output1=get_pdb(ID)
