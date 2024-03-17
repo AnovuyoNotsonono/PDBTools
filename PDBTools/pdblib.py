@@ -7,13 +7,12 @@ def get_pdb(ID='PDB_options'):
     try:
         #Giving the user options when no input is inserted  
         if ID=='PDB_options':
-<<<<<<< HEAD
-            print("[1.get_pdb(), 2.pdb_details(), 3.protein_residues(), 4.pdb_chains(),"
-                   " 5.print_or_writelines_to_a_file,6.change_chain_id(),7.non_standard_residues()"
+
+            print("[1.get_pdb(), 2.pdb_details(), 3.protein_residues(),"
+                   "4.pdb_chains(), 5.print_or_writelines_to_a_file,"
+                   "6.change_chain_id(),7.non_standard_residues()"
                     "8.temperature_factor_plot()]")
-=======
-            print("[1.get_pdb(), 2.pdb_details(), 3.protein_residues(), 4.pdb_chains(), 5.print_or_writelines_to_a_file,6.change_chain_id(),7.non_standard_residues() 8.temperature_factor_plot()]")
->>>>>>> ccdde01315bcd3e980589cd15440088d65382320
+
   
       #Checking whether a file exists before downloading, this line ONLY executes
       #if the argument "ID" is given during a fuction call.
@@ -23,7 +22,7 @@ def get_pdb(ID='PDB_options'):
       #Downloading a PDB file if it does not exist locally using the "requests" module 
             response=requests.get("https://files.rcsb.org/download/"+ID+".pdb")
             #Printing the content of the pdb_file to the std output for the user to read
-            print(response.text)
+           # print(response.text)
             pdb_file=response.text.split("\n")
             return pdb_file
       
@@ -194,12 +193,13 @@ def non_standard_residues(ID):
         non_standard_residues=set()
         #Isolating lines from the pdb file which is the output of the "get_pdb()" function
         for line in output1:
-<<<<<<< HEAD
+
        #Setting a condition to focus only on the lines starting with "HETATM" since non-standard
        #residues are contained in those lines
-=======
-        #Setting a condition to focus only on the lines starting with "HETATM" since non-standard residues are contained in those lines
->>>>>>> ccdde01315bcd3e980589cd15440088d65382320
+
+    #Setting a condition to focus only on the lines starting with "HETATM" since non-standard
+    #residues are contained in those lines
+
             if (line.startswith("HETATM")):
                 non_standard_residues.add((line[17:21]))
         print(non_standard_residues)
