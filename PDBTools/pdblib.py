@@ -65,7 +65,7 @@ def protein_residues(ID,chain_id):
      #Error handling: Handling the TypeError giving the user a hint to enter a correct type of input.
     try:
         #Calling the "get_pdb" function to use its output pdb file to get protein residues
-         output1=get_pdb(ID)
+        output1=get_pdb(ID)
     
     #Creating an empty string for three-letter protein residues found on the pdb file
         three_letter_residues=""
