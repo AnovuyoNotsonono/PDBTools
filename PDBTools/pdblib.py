@@ -8,8 +8,7 @@ def get_pdb(ID='PDB_options'):
     try:
         #Giving the user options when no input is inserted  
         if ID=='PDB_options':
-            print("1.get_pdb(), 2.pdb_details(), 3.protein_residues(), 4.pdb_chains(), 5.print_or_writelines_to_a_file,
-                 6.change_chain_id(),7.non_standard_residues() 8.temperature_factor_plot()")
+            print("1.get_pdb(), 2.pdb_details(), 3.protein_residues(), 4.pdb_chains(), 5.print_or_writelines_to_a_file,6.change_chain_id(),7.non_standard_residues() 8.temperature_factor_plot()")
   
       #Checking whether a file exists before downloading, this line ONLY executes
       #if the argument "ID" is given during a fuction call.
