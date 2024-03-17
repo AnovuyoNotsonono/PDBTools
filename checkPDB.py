@@ -26,4 +26,4 @@ altered_chain_id=pdblib.change_chain_id(ID,record_type,chain_id, new_chain_id)
 non_standard_protein_residues=pdblib.non_standard_residues(ID)
 
 #This function returns a plot of the temperature factor of the proteins found on the pdb file
-Temperature_factor_plot=pdblib.temperature_factor_plot(ID, chain_id)
+Temperature_factor_plot=pdblib.temperature_factor_plot(ID,chain_id,L,B)
