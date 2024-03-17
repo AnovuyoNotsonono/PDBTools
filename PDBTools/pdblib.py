@@ -65,10 +65,10 @@ def protein_residues(ID,chain_id):
      #Error handling: Handling the TypeError giving the user a hint to enter a correct type of input.
     try:
         #Calling the "get_pdb" function to use its output pdb file to get protein residues
-        output1=get_pdb(ID)
+         output1=get_pdb(ID)
     
     #Creating an empty string for three-letter protein residues found on the pdb file
-    three_letter_residues=""
+        three_letter_residues=""
     
     #Iterating though lines of the pdb file to isolate them as a string
         for line in output1:
@@ -119,11 +119,12 @@ def pdb_chains(ID, output_filename, chain=None):
         print("Please change the type of your input to a correct one")
         
 def print_or_writelines_to_a_file(ID,chain_id,record_type,option):
+    
     """print_or_writelines_to_a_file takes PDB ID, chain ID, record_type(to specify wheter HETATM/ATOM)
        and an option for the user to either print the results or write them to a file, it returns protein
        or non_protein lines either stored in a file or printed out for reading"""
      #Error handling: Handling the TypeError giving the user a hint to enter a correct type of input.
-   try:
+    try:
        #Calling the "get_pdb() function to use its pdb output file"
         output1=get_pdb(ID)
         #Creating an empty string to store the "results" relevant to the conditions set by the user
@@ -197,7 +198,7 @@ def non_standard_residues(ID):
 #Plot the temperature factor of the protein, given a chain ID, the plot dimensions and an output file name.
 from matplotlib import pyplot as plt
 def temperature_factor_plot(ID, chain_id):
-    """temperature_factor plot takes as positional inputs a pdb id and a chain id and returns a plot of the temperature factor, the plot is done using matplotlib""""
+    """temperature_factor plot takes as positional inputs a pdb id and a chain id and returns a plot of the temperature factor, the plot is done using matplotlib"""
      #Error handling: Handling the TypeError giving the user a hint to enter a correct type of input.
     try:
         output1=get_pdb(ID)
