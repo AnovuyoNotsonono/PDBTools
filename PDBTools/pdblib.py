@@ -40,7 +40,7 @@ def get_pdb(ID='PDB_options'):
             with open(ID+".pdb", "r") as fobject:
                 pdf_file=fobject.readlines()
                 #Printing the content of the pdb_file to the std output for the user to read
-                print(pdf_file)
+               # print(pdf_file)
                 return pdf_file
         except FileNotFoundError:
             print("Please choose what you want to do by calling one of the listed functionalities")
@@ -209,6 +209,7 @@ def non_standard_residues(ID):
     
     
 #Plot the temperature factor of the protein, given a chain ID, the plot dimensions and an output file name.
+#Importing a tool from a third party library, "matplotlib" to use it for plotting
 from matplotlib import pyplot as plt
 os.environ["XDG_SESSION_TYPE"]="xcb"
 def temperature_factor_plot(ID, chain_id,L,B):
