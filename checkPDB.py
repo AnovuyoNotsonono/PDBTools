@@ -2,28 +2,47 @@
 
 from PDBTools import pdblib
 
-#This function takes a PDB id and return a pdb file
-get_pdb=pdblib.get_pdb(ID="PDB_options")
+def main():
+    # Example PDB ID and parameters
+    ID = "1HHP"          # Replace with any valid PDB ID
+    chain_id = "A"       # Chain to analyze
+    output_filename = "example_chains"  # Output file for chains
+    record_type = "ATOM" # Options: "ATOM" or "HETATM"
+    option = "print"     # Options: "print" or "write"
+    key = "2"            # Example option for pdb_details (e.g., TITLE)
+    new_chain_id = "B"   # For change_chain_id
+    L, B = 10, 5         # Plot dimensions (length, breadth)
 
-#This function returns pdb details as per users choice on
-#what they want to see, it takes a pdb id and a key to the option of interest
-pdb_details=pdblib.pdb_details(ID,key)
+    # 1. Show available functions
+    print("Available PDBTools functions:")
+    pdb_options = pdblib.get_pdb(ID="PDB_options")
+    print(pdb_options)
 
-#This function returns one letter protein residues from the pdb file
-protein_residues=pdblib.protein_residues(ID,chain_id)
+    # 2. Get PDB details (like TITLE)
+    print("\nPDB Details (TITLE):")
+    pdblib.pdb_details(ID, key)
 
-#This function writes to a file, chains with their chain ids and the pdb header as definition lines
-pdb_chains=pdblib.pdb_chains(ID, output_filename, chain=None)
+    # 3. Get one-letter protein residues
+    print("\nProtein residues:")
+    pdblib.protein_residues(ID, chain_id)
 
-#This function allows the user to write their lines of choice
-# to a file or to print them to the standard output
-print_or_write_lines=pdblib.print_or_writelines_to_a_file(ID,chain_id,record_type,option)
+    # 4. Save chains to a FASTA file
+    pdblib.pdb_chains(ID, output_filename)
 
-#This function allows the user to alter a chain id of choice and save the file
-altered_chain_id=pdblib.change_chain_id(ID,record_type,chain_id, new_chain_id)
+    # 5. Print or write selected lines
+    pdblib.print_or_writelines_to_a_file(ID, chain_id, record_type, option)
 
-#This function returns non standardprotein residues found on the pdb file
-non_standard_protein_residues=pdblib.non_standard_residues(ID)
+    # 6. Alter chain ID and save to a file
+    pdblib.change_chain_id(ID, record_type, chain_id, new_chain_id)
 
-#This function returns a plot of the temperature factor of the proteins found on the pdb file
-Temperature_factor_plot=pdblib.temperature_factor_plot(ID,chain_id,L,B)
+    # 7. Get non-standard residues
+    print("\nNon-standard residues:")
+    pdblib.non_standard_residues(ID)
+
+    # 8. Plot temperature factors
+    print("\nPlotting temperature factor...")
+    pdblib.temperature_factor_plot(ID, chain_id, L, B)
+
+
+if __name__ == "__main__":
+    main()
