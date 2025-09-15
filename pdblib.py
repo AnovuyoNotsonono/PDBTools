@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """
 pdbtools.py
 
@@ -153,7 +152,7 @@ def pdb_chains(pdb_id, output_filename, chain=None):
 # -----------------------------
 # Print or write lines
 # -----------------------------
-def print_or_write_file(pdb_id, chain_id, record_type="ATOM", option="print"):
+def print_or_write_file(pdb_id, chain_id, record_type, option):
     """
     Print or write ATOM/HETATM lines for a chain.
     
