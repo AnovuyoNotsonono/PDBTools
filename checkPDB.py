@@ -1,8 +1,37 @@
 #!/usr/bin/env python
 
-from PDBTools import pdblib
+import pdblib
 
 def main():
+    """
+    Demonstrates the usage of PDBTools library functions on a sample PDB file.
+
+    This function performs the following steps:
+    1. Displays available PDBTools functions.
+    2. Retrieves PDB details for a selected option (e.g., TITLE, HEADER).
+    3. Extracts one-letter amino acid residues for a given chain.
+    4. Saves chains from the PDB file to a FASTA file.
+    5. Prints or writes ATOM/HETATM lines for a specific chain.
+    6. Alters a chain ID and saves the modified PDB content to a new file.
+    7. Displays non-standard residues found in the PDB file.
+    8. Plots the temperature factor (B-factor) of atoms in the specified chain.
+
+    Parameters (set as example values within the function):
+        ID (str): PDB identifier (e.g., "1HHP").
+        chain_id (str): Chain to analyze (e.g., "A").
+        output_filename (str): Name for the FASTA output file for chains.
+        record_type (str): Record type to filter ("ATOM" or "HETATM").
+        option (str): Whether to print or write lines ("print" or "write").
+        key (str): Option number for selecting PDB details (e.g., "2" for TITLE).
+        new_chain_id (str): New chain ID for the change_chain_id function.
+        L (int): Plot length for temperature factor plot.
+        B (int): Plot breadth for temperature factor plot.
+
+    Usage:
+        Run the script directly. This function uses example PDB ID "1HHP"
+        and demonstrates all main functionalities of the pdblib module.
+    """
+
     # Example PDB ID and parameters
     ID = "1HHP"          # Replace with any valid PDB ID
     chain_id = "A"       # Chain to analyze
@@ -15,7 +44,7 @@ def main():
 
     # 1. Show available functions
     print("Available PDBTools functions:")
-    pdb_options = pdblib.get_pdb(ID="PDB_options")
+    pdb_options = pdblib.get_pdb("PDB_options")
     print(pdb_options)
 
     # 2. Get PDB details (like TITLE)
@@ -30,7 +59,7 @@ def main():
     pdblib.pdb_chains(ID, output_filename)
 
     # 5. Print or write selected lines
-    pdblib.print_or_writelines_to_a_file(ID, chain_id, record_type, option)
+    pdblib.print_or_write_file(ID, chain_id, record_type, option)
 
     # 6. Alter chain ID and save to a file
     pdblib.change_chain_id(ID, record_type, chain_id, new_chain_id)
