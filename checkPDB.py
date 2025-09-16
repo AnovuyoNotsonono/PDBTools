@@ -7,7 +7,7 @@ def main():
     Demonstrates the usage of PDBTools library functions on a sample PDB file.
 
     This function performs the following steps:
-    1. Displays available PDBTools functions.
+    1. Displays available PDBTools functions if no argument is given to the 'get_pdb' function.
     2. Retrieves PDB details for a selected option (e.g., TITLE, HEADER).
     3. Extracts one-letter amino acid residues for a given chain.
     4. Saves chains from the PDB file to a FASTA file.
@@ -44,8 +44,7 @@ def main():
 
     # 1. Show available functions
     print("Available PDBTools functions:")
-    pdb_options = pdblib.get_pdb("PDB_options")
-    print(pdb_options)
+    pdb_options = pdblib.get_pdb()
 
     # 2. Get PDB details (like TITLE)
     print("\nPDB Details (TITLE):")
